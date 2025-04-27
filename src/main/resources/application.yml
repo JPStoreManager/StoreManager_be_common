@@ -42,6 +42,15 @@ email:
   from: "JumpingParkManager@gmail.com"
   title-prefix: "[JumpingParkManager]"
 
+cors:
+  allow-ip: http://localhost:3000 # TODO 개발 서버 IP 추가
+
+---
+spring :
+  config:
+    activate:
+      on-profile: local
+
 ---
 spring:
   config:
