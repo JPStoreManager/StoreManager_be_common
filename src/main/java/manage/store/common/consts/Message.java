@@ -8,7 +8,7 @@ public interface Message {
     /** 로그인 */
     String LOGIN_SUCCESS = "로그인 성공";
     String LOGIN_FAIL_INVALID_PARAM = "올바른 정보를 입력하세요.";
-    String LOGIN_FAIL_NOT_EXIST_USER = "로그인 실패";
+    String LOGIN_FAIL_NOT_EXIST_USER = "존재하지 아이디 이거나 비밀번호가 올바르지 않습니다";
 
     /** 비밀번호 찾기 */
     String FIND_PW_FAIL_INVALID_PARAM_OR_ACCESS = "올바른 정보를 입력하지 않았거나 잘못된 접근입니다.";

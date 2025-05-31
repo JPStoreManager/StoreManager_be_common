@@ -34,10 +34,6 @@ spring:
       "[mail.smtp.timeout]": 3000
       "[mail.smtp.writetimeout]": 5000
 
-#server:
-#  servlet:
-#    context-path: /user
-
 email:
   from: "JumpingParkManager@gmail.com"
   title-prefix: "[JumpingParkManager]"
