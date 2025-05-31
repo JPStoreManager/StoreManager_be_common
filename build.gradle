@@ -5,19 +5,33 @@ group = 'manage.store'
 version = '0.0.1-SNAPSHOT'
 
 dependencies {
+    // Core Spring Boot 의존성
     implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    // 보안 의존성
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
+    // Lombok 의존성
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    // Util 의존성
     implementation 'com.google.code.gson:gson:2.11.0'
 
+    // flyway
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
 
-    testImplementation project(':user')
-    testImplementation project(':test')
+    // MyBatis 및 MariaDB 의존성
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+    // Validation 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // 테스트 관련 의존성
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 }
 
 test {
