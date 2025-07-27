@@ -1,6 +1,10 @@
 package manage.store.common.config;
 
+import manage.store.common.model.typeHandler.SortOrderTypeHandler;
+import manage.store.common.model.typeHandler.commonCode.CommonCdTypeHandler;
+import manage.store.common.model.typeHandler.commonCode.CommonGrpCdTypeHandler;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
@@ -24,8 +28,10 @@ import java.util.regex.Pattern;
  */
 @Configuration
 @MapperScan(basePackages = {
-        "manage.store.user.repository.mapper",
-        "manage.store.money.repository.mapper",
+//        "manage.store.user.repository.mapper",
+//        "manage.store.money.repository.mapper",
+//        "manage.store.common.repository.mapper",
+        "manage.store.**.repository.mapper"
 })
 public class DBConfiguration {
 
@@ -45,10 +51,7 @@ public class DBConfiguration {
         // 멀티 모듈에 위치한 DTO 클래스들을 MyBatis에서 사용할 수 있도록 설정
         factoryBean.setTypeAliasesPackage("manage.store.*.DTO.entity");
         SqlSessionFactory sqlSessionFactory = factoryBean.getObject();
-        if(sqlSessionFactory != null) {
-            org.apache.ibatis.session.Configuration configuration = sqlSessionFactory.getConfiguration();
-            configuration.setMapUnderscoreToCamelCase(true);
-        }
+        setMyBatisConfig(sqlSessionFactory);
         return sqlSessionFactory;
     }
 
@@ -95,5 +98,30 @@ public class DBConfiguration {
     private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
         return t -> seen.add(keyExtractor.apply(t));
+    }
+
+    /**
+     * MyBatis 설정 적용
+     * @param sqlSessionFactory
+     */
+    private void setMyBatisConfig(SqlSessionFactory sqlSessionFactory) {
+        if(sqlSessionFactory == null) return;
+
+        org.apache.ibatis.session.Configuration configuration = sqlSessionFactory.getConfiguration();
+        configuration.setMapUnderscoreToCamelCase(true);
+        setMyBatisTypeHandlers(configuration);
+    }
+
+    /**
+     * MyBatis TypeHandler 설정
+     * @param configuration
+     */
+    private void setMyBatisTypeHandlers(org.apache.ibatis.session.Configuration configuration) {
+        if (configuration == null) return;
+
+        TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+        typeHandlerRegistry.register(CommonGrpCdTypeHandler.class);
+        typeHandlerRegistry.register(CommonCdTypeHandler.class);
+        typeHandlerRegistry.register(SortOrderTypeHandler.class);
     }
 }
