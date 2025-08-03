@@ -1,9 +1,10 @@
 package manage.store.common.service;
 
-import manage.store.common.consts.UseYn;
-import manage.store.common.model.commonCode.CommonCode;
-import manage.store.common.model.commonCode.prop.CommonCd;
-import manage.store.common.model.commonCode.prop.CommonGrpCd;
+
+import manage.store.domain.model.common.commonCode.CommonCode;
+import manage.store.domain.model.common.value.CommonCodeCd;
+import manage.store.domain.model.common.value.CommonCodeGrpCd;
+import manage.store.domain.model.common.value.UseYn;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface CommonCodeService {
      * @param commonGrpCd 공통 코드의 그룹 코드
      * @return UseYn이 Y인 공통 코드 리스트
      */
-    List<CommonCode> getCommonCodes(CommonGrpCd commonGrpCd);
+    List<CommonCode> getCommonCodes(CommonCodeGrpCd commonGrpCd);
 
     /**
      * 공통 코드 리스트 조회
@@ -28,7 +29,7 @@ public interface CommonCodeService {
      * @param useYn 공통 코드의 사용 여부
      * @return 공통 코드 리스트
      */
-    List<CommonCode> getCommonCodes(CommonGrpCd commonGrpCd, UseYn useYn);
+    List<CommonCode> getCommonCodes(CommonCodeGrpCd commonGrpCd, UseYn useYn);
 
     /**
      * 현재 사용되고 있는 공통 코드 조회
@@ -36,7 +37,7 @@ public interface CommonCodeService {
      * @param cd 공통 코드
      * @return UseYn이 Y인 공통 코드
      */
-    CommonCode getCommonCode(CommonGrpCd commonGrpCd, CommonCd cd);
+    CommonCode getCommonCode(CommonCodeGrpCd commonGrpCd, CommonCodeCd cd);
 
     /**
      * 공통 코드 조회
@@ -45,6 +46,6 @@ public interface CommonCodeService {
      * @param useYn 공통 코드의 사용 여부
      * @return 공통 코드
      */
-    CommonCode getCommonCode(CommonGrpCd commonGrpCd, CommonCd cd, UseYn useYn);
+    CommonCode getCommonCode(CommonCodeGrpCd commonGrpCd, CommonCodeCd cd, UseYn useYn);
 
 }

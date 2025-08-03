@@ -1,19 +1,20 @@
 package manage.store.common.testUtils;
 
-import manage.store.common.consts.SortOrder;
-import manage.store.common.consts.UseYn;
-import manage.store.common.model.commonCode.prop.CommonCd;
-import manage.store.common.model.commonCode.CommonCode;
-import manage.store.common.model.commonCode.prop.CommonGrpCd;
+
+import manage.store.domain.model.common.commonCode.CommonCode;
+import manage.store.domain.model.common.value.CommonCodeCd;
+import manage.store.domain.model.common.value.CommonCodeGrpCd;
+import manage.store.domain.model.common.value.SortOrder;
+import manage.store.domain.model.common.value.UseYn;
 
 public interface CommonCodeTestUtils {
 
-    CommonGrpCd TEST_GRP_CD = new CommonGrpCd("TEST_GRP_CD");
+    CommonCodeGrpCd TEST_GRP_CD = new CommonCodeGrpCd("TEST_GRP_CD");
 
     CommonCode COMMON_CODE1 = CommonCode.builder()
             .grpCd(TEST_GRP_CD)
             .grpCdDesc("test group code")
-            .cd(new CommonCd("CD1"))
+            .cd(new CommonCodeCd("CD1"))
             .cdVal("CDVAL1")
             .cdDesc("code value desc")
             .useYn(UseYn.Y)
@@ -27,7 +28,7 @@ public interface CommonCodeTestUtils {
     CommonCode COMMON_CODE2 = CommonCode.builder()
             .grpCd(TEST_GRP_CD)
             .grpCdDesc("test group code")
-            .cd(new CommonCd("CD2"))
+            .cd(new CommonCodeCd("CD2"))
             .cdVal("CDVAL2")
             .cdDesc("code value desc")
             .useYn(UseYn.Y)
@@ -41,7 +42,7 @@ public interface CommonCodeTestUtils {
     CommonCode COMMON_CODE3 = CommonCode.builder()
             .grpCd(TEST_GRP_CD)
             .grpCdDesc("test group code")
-            .cd(new CommonCd("CD3"))
+            .cd(new CommonCodeCd("CD3"))
             .cdVal("CDVAL3")
             .cdDesc("code value desc")
             .useYn(UseYn.Y)
@@ -55,7 +56,7 @@ public interface CommonCodeTestUtils {
     CommonCode COMMON_CODE4 = CommonCode.builder()
             .grpCd(TEST_GRP_CD)
             .grpCdDesc("test group code")
-            .cd(new CommonCd("CD4"))
+            .cd(new CommonCodeCd("CD4"))
             .cdVal("CDVAL4")
             .cdDesc("code value desc")
             .useYn(UseYn.N)
@@ -69,7 +70,7 @@ public interface CommonCodeTestUtils {
     CommonCode COMMON_CODE5 = CommonCode.builder()
             .grpCd(TEST_GRP_CD)
             .grpCdDesc("test group code")
-            .cd(new CommonCd("CD5"))
+            .cd(new CommonCodeCd("CD5"))
             .cdVal("CDVAL5")
             .cdDesc("code value desc")
             .useYn(UseYn.N)

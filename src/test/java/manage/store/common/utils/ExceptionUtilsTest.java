@@ -1,7 +1,7 @@
 package manage.store.common.utils;
 
-import manage.store.common.exception.InternalErrorException;
-import manage.store.common.consts.Tags;
+import manage.store.domain.exception.InternalErrorException;
+import manage.store.domain.consts.Tags;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

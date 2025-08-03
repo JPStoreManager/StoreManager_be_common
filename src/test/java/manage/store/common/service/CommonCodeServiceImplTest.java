@@ -1,12 +1,12 @@
 package manage.store.common.service;
 
-import manage.store.common.consts.UseYn;
-import manage.store.common.exception.InvalidParameterException;
-import manage.store.common.model.commonCode.CommonCode;
-import manage.store.common.model.commonCode.prop.CommonCd;
-import manage.store.common.model.commonCode.prop.CommonGrpCd;
 import manage.store.common.repository.mapper.CommonCodeMapper;
 import manage.store.common.testUtils.CommonCodeTestUtils;
+import manage.store.domain.exception.InvalidParameterException;
+import manage.store.domain.model.common.commonCode.CommonCode;
+import manage.store.domain.model.common.value.CommonCodeCd;
+import manage.store.domain.model.common.value.CommonCodeGrpCd;
+import manage.store.domain.model.common.value.UseYn;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,9 +34,9 @@ class CommonCodeServiceImplTest {
     @DisplayName("getCommonCodes 성공 - 사용중인 공통 코드")
     void getCommonCodes_success_UsableCommonCode() {
         // Given
-        CommonGrpCd grpCd = CommonCodeTestUtils.TEST_GRP_CD;
+        CommonCodeGrpCd grpCd = CommonCodeTestUtils.TEST_GRP_CD;
         UseYn useYn = UseYn.Y;
-        given(commonCodeMapper.selectCommonCds(grpCd.getValue(), useYn))
+        given(commonCodeMapper.selectCommonCds(grpCd.value(), useYn))
                 .willReturn(List.of(CommonCodeTestUtils.USE_COMMON_CODES));
 
         // When
@@ -44,7 +44,7 @@ class CommonCodeServiceImplTest {
 
         // Then
         assertNotNull(actual);
-        verify(commonCodeMapper).selectCommonCds(grpCd.getValue(), useYn);
+        verify(commonCodeMapper).selectCommonCds(grpCd.value(), useYn);
         Assertions.assertThat(actual.size()).isEqualTo(CommonCodeTestUtils.USE_COMMON_CODES.length);
     }
 
@@ -52,9 +52,9 @@ class CommonCodeServiceImplTest {
     @DisplayName("getCommonCodes 성공 - 사용중이지 않은 공통 코드")
     void getCommonCodes_success_NonUsableCommonCode() {
         // Given
-        CommonGrpCd grpCd = CommonCodeTestUtils.TEST_GRP_CD;
+        CommonCodeGrpCd grpCd = CommonCodeTestUtils.TEST_GRP_CD;
         UseYn useYn = UseYn.N;
-        given(commonCodeMapper.selectCommonCds(grpCd.getValue(), useYn))
+        given(commonCodeMapper.selectCommonCds(grpCd.value(), useYn))
                 .willReturn(List.of(CommonCodeTestUtils.NOT_USE_COMMON_CODES));
 
         // When
@@ -62,7 +62,7 @@ class CommonCodeServiceImplTest {
 
         // Then
         assertNotNull(actual);
-        verify(commonCodeMapper).selectCommonCds(grpCd.getValue(), useYn);
+        verify(commonCodeMapper).selectCommonCds(grpCd.value(), useYn);
         Assertions.assertThat(actual.size()).isEqualTo(CommonCodeTestUtils.NOT_USE_COMMON_CODES.length);
     }
 
@@ -70,8 +70,8 @@ class CommonCodeServiceImplTest {
     @DisplayName("getCommonCodes 성공 - useYn 기본값")
     void getCommonCodes_success_defaultUseYn() {
         // Given
-        CommonGrpCd grpCd = CommonCodeTestUtils.TEST_GRP_CD;
-        given(commonCodeMapper.selectCommonCds(grpCd.getValue(), UseYn.Y))
+        CommonCodeGrpCd grpCd = CommonCodeTestUtils.TEST_GRP_CD;
+        given(commonCodeMapper.selectCommonCds(grpCd.value(), UseYn.Y))
                 .willReturn(List.of(CommonCodeTestUtils.USE_COMMON_CODES));
 
         // When
@@ -79,7 +79,7 @@ class CommonCodeServiceImplTest {
 
         // Then
         assertNotNull(actual);
-        verify(commonCodeMapper).selectCommonCds(grpCd.getValue(), UseYn.Y);
+        verify(commonCodeMapper).selectCommonCds(grpCd.value(), UseYn.Y);
         Assertions.assertThat(actual.size()).isEqualTo(CommonCodeTestUtils.USE_COMMON_CODES.length);
     }
 
@@ -98,10 +98,10 @@ class CommonCodeServiceImplTest {
     @DisplayName("getCommonCode 성공 - 사용중인 공통 코드")
     void getCommonCode_success_UsableCommonCode() {
         // Given
-        CommonGrpCd grpCd = CommonCodeTestUtils.COMMON_CODE1.getGrpCd();
-        CommonCd cd = CommonCodeTestUtils.COMMON_CODE1.getCd();
+        CommonCodeGrpCd grpCd = CommonCodeTestUtils.COMMON_CODE1.getGrpCd();
+        CommonCodeCd cd = CommonCodeTestUtils.COMMON_CODE1.getCd();
         UseYn useYn = UseYn.Y;
-        given(commonCodeMapper.selectCommonCd(grpCd.getValue(), cd.getValue(), useYn))
+        given(commonCodeMapper.selectCommonCd(grpCd.value(), cd.value(), useYn))
                 .willReturn(CommonCodeTestUtils.COMMON_CODE1);
 
         // When
@@ -109,7 +109,7 @@ class CommonCodeServiceImplTest {
 
         // Then
         assertNotNull(actual);
-        verify(commonCodeMapper).selectCommonCd(grpCd.getValue(), cd.getValue(), useYn);
+        verify(commonCodeMapper).selectCommonCd(grpCd.value(), cd.value(), useYn);
         assertEquals(CommonCodeTestUtils.COMMON_CODE1, actual);
     }
 
@@ -117,10 +117,10 @@ class CommonCodeServiceImplTest {
     @DisplayName("getCommonCode 성공 - 사용중이지 않은 공통 코드")
     void getCommonCode_success_NonUsableCommonCode() {
         // Given
-        CommonGrpCd grpCd = CommonCodeTestUtils.COMMON_CODE4.getGrpCd();
-        CommonCd cd = CommonCodeTestUtils.COMMON_CODE4.getCd();
+        CommonCodeGrpCd grpCd = CommonCodeTestUtils.COMMON_CODE4.getGrpCd();
+        CommonCodeCd cd = CommonCodeTestUtils.COMMON_CODE4.getCd();
         UseYn useYn = UseYn.N;
-        given(commonCodeMapper.selectCommonCd(grpCd.getValue(), cd.getValue(), useYn))
+        given(commonCodeMapper.selectCommonCd(grpCd.value(), cd.value(), useYn))
                 .willReturn(CommonCodeTestUtils.COMMON_CODE4);
 
         // When
@@ -128,7 +128,7 @@ class CommonCodeServiceImplTest {
 
         // Then
         assertNotNull(actual);
-        verify(commonCodeMapper).selectCommonCd(grpCd.getValue(), cd.getValue(), useYn);
+        verify(commonCodeMapper).selectCommonCd(grpCd.value(), cd.value(), useYn);
         assertEquals(CommonCodeTestUtils.COMMON_CODE4, actual);
     }
 
@@ -136,9 +136,9 @@ class CommonCodeServiceImplTest {
     @DisplayName("getCommonCode 성공 - useYn 기본값")
     void getCommonCode_success_defaultUseYn() {
         // Given
-        CommonGrpCd grpCd = CommonCodeTestUtils.COMMON_CODE1.getGrpCd();
-        CommonCd cd = CommonCodeTestUtils.COMMON_CODE1.getCd();
-        given(commonCodeMapper.selectCommonCd(grpCd.getValue(), cd.getValue(), UseYn.Y))
+        CommonCodeGrpCd grpCd = CommonCodeTestUtils.COMMON_CODE1.getGrpCd();
+        CommonCodeCd cd = CommonCodeTestUtils.COMMON_CODE1.getCd();
+        given(commonCodeMapper.selectCommonCd(grpCd.value(), cd.value(), UseYn.Y))
                 .willReturn(CommonCodeTestUtils.COMMON_CODE1);
 
         // When
@@ -146,7 +146,7 @@ class CommonCodeServiceImplTest {
 
         // Then
         assertNotNull(actualCode);
-        verify(commonCodeMapper).selectCommonCd(grpCd.getValue(), cd.getValue(), UseYn.Y);
+        verify(commonCodeMapper).selectCommonCd(grpCd.value(), cd.value(), UseYn.Y);
         assertEquals(CommonCodeTestUtils.COMMON_CODE1, actualCode);
     }
 

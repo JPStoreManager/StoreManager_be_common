@@ -1,6 +1,6 @@
 package manage.store.common.utils;
 
-import manage.store.common.exception.InternalErrorException;
+import manage.store.domain.exception.InternalErrorException;
 
 public class ReflectionUtils {
 
