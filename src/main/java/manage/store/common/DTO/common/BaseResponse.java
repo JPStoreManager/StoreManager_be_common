@@ -2,8 +2,8 @@ package manage.store.common.DTO.common;
 
 import lombok.Getter;
 import lombok.ToString;
-import manage.store.common.consts.SuccessFlag;
-import manage.store.common.exception.InvalidParameterException;
+import manage.store.domain.exception.InvalidParameterException;
+import manage.store.domain.model.common.value.SuccessFlag;
 import org.springframework.util.StringUtils;
 
 @Getter

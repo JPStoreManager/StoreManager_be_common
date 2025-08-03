@@ -1,11 +1,11 @@
 package manage.store.common.repository.mapper;
 
-import manage.store.common.config.DBConfiguration;
-import manage.store.common.consts.Profiles;
-import manage.store.common.consts.Tags;
-import manage.store.common.consts.UseYn;
-import manage.store.common.model.commonCode.CommonCode;
+import manage.store.common.config.db.DBConfiguration;
 import manage.store.common.testUtils.CommonCodeTestUtils;
+import manage.store.domain.consts.Profiles;
+import manage.store.domain.consts.Tags;
+import manage.store.domain.model.common.commonCode.CommonCode;
+import manage.store.domain.model.common.value.UseYn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class CommonCodeMapperTest {
     @DisplayName("공통 코드 목록 조회 성공 - 사용중인 공통 코드")
     void selectCommonCdsByGrpCd_success() {
         // Given
-        final String grpCd = CommonCodeTestUtils.TEST_GRP_CD.getValue();
+        final String grpCd = CommonCodeTestUtils.TEST_GRP_CD.value();
         final int expectedSize = CommonCodeTestUtils.USE_COMMON_CODES.length;
         // When
         List<CommonCode> actual = commonCodeMapper.selectCommonCds(grpCd, UseYn.Y);
@@ -50,7 +50,7 @@ class CommonCodeMapperTest {
     @DisplayName("공통 코드 목록 조회 성공 - 사용중이지 않은 공통 코드")
     void selectCommonCdsByGrpCd_success_notUsed() {
         // Given
-        final String grpCd = CommonCodeTestUtils.TEST_GRP_CD.getValue();
+        final String grpCd = CommonCodeTestUtils.TEST_GRP_CD.value();
         final int expectedSize = CommonCodeTestUtils.NOT_USE_COMMON_CODES.length; // Assuming no codes are not used
 
         // When
@@ -81,8 +81,8 @@ class CommonCodeMapperTest {
     @DisplayName("특정 공통 코드 조회 성공 - 사용중인 공통 코드")
     void selectCommonCd_success() {
         // Given
-        final String grpCd = CommonCodeTestUtils.COMMON_CODE1.getGrpCd().getValue();
-        final String cd = CommonCodeTestUtils.COMMON_CODE1.getCd().getValue();
+        final String grpCd = CommonCodeTestUtils.COMMON_CODE1.getGrpCd().value();
+        final String cd = CommonCodeTestUtils.COMMON_CODE1.getCd().value();
 
         // When
         CommonCode actual = commonCodeMapper.selectCommonCd(grpCd, cd, UseYn.Y);
@@ -96,8 +96,8 @@ class CommonCodeMapperTest {
     @DisplayName("특정 공통 코드 조회 성공 - 사용중이지 않은 공통 코드")
     void selectCommonCd_success_notUsed() {
         // Given
-        final String grpCd = CommonCodeTestUtils.COMMON_CODE4.getGrpCd().getValue();
-        final String cd = CommonCodeTestUtils.COMMON_CODE4.getCd().getValue();
+        final String grpCd = CommonCodeTestUtils.COMMON_CODE4.getGrpCd().value();
+        final String cd = CommonCodeTestUtils.COMMON_CODE4.getCd().value();
 
         // When
         CommonCode actual = commonCodeMapper.selectCommonCd(grpCd, cd, UseYn.N);
@@ -112,8 +112,8 @@ class CommonCodeMapperTest {
     void selectCommonCd_fail_noGrpCd() {
         // Given
         final String[][] testCases = {
-                {CommonCodeTestUtils.TEST_GRP_CD.getValue(), "NO_CD"},
-                {"NO_GRP_CD", CommonCodeTestUtils.COMMON_CODE1.getCd().getValue()},
+                {CommonCodeTestUtils.TEST_GRP_CD.value(), "NO_CD"},
+                {"NO_GRP_CD", CommonCodeTestUtils.COMMON_CODE1.getCd().value()},
                 {"NO_GRP_CD", "NO_CD"}
         };
 
@@ -130,13 +130,13 @@ class CommonCodeMapperTest {
 
     private void validateCommonCode(CommonCode expected, CommonCode actual) {
         assertThat(actual).isNotNull();
-        assertThat(actual.getGrpCd().getValue()).isEqualTo(expected.getGrpCd().getValue());
+        assertThat(actual.getGrpCd().value()).isEqualTo(expected.getGrpCd().value());
         assertThat(actual.getGrpCdDesc()).isEqualTo(expected.getGrpCdDesc());
-        assertThat(actual.getCd().getValue()).isEqualTo(expected.getCd().getValue());
+        assertThat(actual.getCd().value()).isEqualTo(expected.getCd().value());
         assertThat(actual.getCdVal()).isEqualTo(expected.getCdVal());
         assertThat(actual.getCdDesc()).isEqualTo(expected.getCdDesc());
         assertThat(actual.getUseYn()).isEqualTo(expected.getUseYn());
-        assertThat(actual.getSortOrder().getSortOrder()).isEqualTo(expected.getSortOrder().getSortOrder());
+        assertThat(actual.getSortOrder().value()).isEqualTo(expected.getSortOrder().value());
         assertThat(actual.getCreatedBy()).isEqualTo(expected.getCreatedBy());
         assertThat(actual.getLastUpdatedBy()).isEqualTo(expected.getLastUpdatedBy());
     }

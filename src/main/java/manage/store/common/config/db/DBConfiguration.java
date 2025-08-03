@@ -1,8 +1,11 @@
-package manage.store.common.config;
+package manage.store.common.config.db;
 
-import manage.store.common.model.typeHandler.SortOrderTypeHandler;
-import manage.store.common.model.typeHandler.commonCode.CommonCdTypeHandler;
-import manage.store.common.model.typeHandler.commonCode.CommonGrpCdTypeHandler;
+import manage.store.common.config.db.typeHandler.common.CommonCodeCdTypeHandler;
+import manage.store.common.config.db.typeHandler.common.CommonCodeGrpCdTypeHandler;
+import manage.store.common.config.db.typeHandler.common.DbUpdateDateTypeHandler;
+import manage.store.common.config.db.typeHandler.common.SortOrderTypeHandler;
+import manage.store.common.config.db.typeHandler.sales.MoneyTypeHandler;
+import manage.store.common.config.db.typeHandler.user.*;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -120,8 +123,25 @@ public class DBConfiguration {
         if (configuration == null) return;
 
         TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
-        typeHandlerRegistry.register(CommonGrpCdTypeHandler.class);
-        typeHandlerRegistry.register(CommonCdTypeHandler.class);
+        // common
+        typeHandlerRegistry.register(CommonCodeCdTypeHandler.class);
+        typeHandlerRegistry.register(CommonCodeGrpCdTypeHandler.class);
+        typeHandlerRegistry.register(DbUpdateDateTypeHandler.class);
         typeHandlerRegistry.register(SortOrderTypeHandler.class);
+
+        // sales
+        typeHandlerRegistry.register(MoneyTypeHandler.class);
+
+        // user
+        typeHandlerRegistry.register(EmailTypeHandler.class);
+        typeHandlerRegistry.register(OtpNoTypeHandler.class);
+        typeHandlerRegistry.register(PhoneNoTypeHandler.class);
+        typeHandlerRegistry.register(ResidentRegistNoTypeHandler.class);
+        typeHandlerRegistry.register(SalaryTypeHandler.class);
+        typeHandlerRegistry.register(UserAuthCodeTypeHandler.class);
+        typeHandlerRegistry.register(UserIdTypeHandler.class);
+        typeHandlerRegistry.register(UserNameTypeHandler.class);
+        typeHandlerRegistry.register(WorkDateTypeHandler.class);
+        typeHandlerRegistry.register(WorkStatusCodeTypeHandler.class);
     }
 }

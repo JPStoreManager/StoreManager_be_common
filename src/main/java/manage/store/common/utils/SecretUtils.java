@@ -1,6 +1,6 @@
 package manage.store.common.utils;
 
-import manage.store.common.exception.InvalidParameterException;
+import manage.store.domain.exception.InvalidParameterException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.StringUtils;
 

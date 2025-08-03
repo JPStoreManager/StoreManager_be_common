@@ -1,7 +1,7 @@
 package manage.store.common.repository.mapper;
 
-import manage.store.common.consts.UseYn;
-import manage.store.common.model.commonCode.CommonCode;
+import manage.store.domain.model.common.commonCode.CommonCode;
+import manage.store.domain.model.common.value.UseYn;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
