@@ -1,9 +1,6 @@
 package manage.store.common.config.db;
 
-import manage.store.common.config.db.typeHandler.common.CommonCodeCdTypeHandler;
-import manage.store.common.config.db.typeHandler.common.CommonCodeGrpCdTypeHandler;
-import manage.store.common.config.db.typeHandler.common.DbUpdateDateTypeHandler;
-import manage.store.common.config.db.typeHandler.common.SortOrderTypeHandler;
+import manage.store.common.config.db.typeHandler.common.*;
 import manage.store.common.config.db.typeHandler.sales.MoneyTypeHandler;
 import manage.store.common.config.db.typeHandler.user.*;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -128,6 +125,7 @@ public class DBConfiguration {
         typeHandlerRegistry.register(CommonCodeGrpCdTypeHandler.class);
         typeHandlerRegistry.register(DbUpdateDateTypeHandler.class);
         typeHandlerRegistry.register(SortOrderTypeHandler.class);
+        typeHandlerRegistry.register(DeleteFlagTypeHandler.class);
 
         // sales
         typeHandlerRegistry.register(MoneyTypeHandler.class);

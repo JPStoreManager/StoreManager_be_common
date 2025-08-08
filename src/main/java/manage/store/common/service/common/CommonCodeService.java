@@ -1,4 +1,4 @@
-package manage.store.common.service;
+package manage.store.common.service.common;
 
 
 import manage.store.domain.model.common.commonCode.CommonCode;

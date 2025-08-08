@@ -1,7 +1,7 @@
 package manage.store.common.utils;
 
 
-import manage.store.domain.exception.InvalidParameterException;
+import manage.store.domain.exception.common.InvalidParameterException;
 import manage.store.domain.consts.Tags;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
