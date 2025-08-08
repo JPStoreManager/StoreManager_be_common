@@ -1,6 +1,6 @@
 package manage.store.common.DTO.common;
 
-import manage.store.domain.exception.InvalidParameterException;
+import manage.store.domain.exception.common.InvalidParameterException;
 import manage.store.domain.model.common.value.SuccessFlag;
 import org.springframework.util.StringUtils;
 
